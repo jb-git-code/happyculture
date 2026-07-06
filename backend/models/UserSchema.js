@@ -7,16 +7,19 @@ const {
 const userSchema = new mongoose.Schema(
   {
     email: {
-      type: email,
+      type: String,
       required: true,
       unique: true,
+      lowercase: true,
+      trim: true,
     },
     name: {
       type: String,
       required: true,
+      trim: true,
     },
     password: {
-      type: string,
+      type: String,
       required: true,
     },
     branch: {
@@ -41,6 +44,11 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    role: {
+      type: String,
+      enum: ["admin", "lead", "volunteer"],
+      default: "volunteer"
+    }
   },
   { timestamps: true },
 );
